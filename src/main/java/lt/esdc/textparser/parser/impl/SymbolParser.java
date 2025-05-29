@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 import lt.esdc.textparser.composite.TextComponent;
 import lt.esdc.textparser.composite.impl.Symbol;
 
-public class SymbolParser extends BaseComponentParser {
+public class SymbolParser extends TextComponentParser {
   private static final Pattern SYMBOL_PATTERN = Pattern.compile("^.", Pattern.DOTALL);
 
   @Override
@@ -14,7 +14,7 @@ public class SymbolParser extends BaseComponentParser {
   }
 
   @Override
-  protected TextComponent buildComponent(String text) {
-    return new Symbol(text.charAt(0));
+  protected TextComponent parseChunk(ParseObject chunk) {
+    return new Symbol(chunk.getText().charAt(0));
   }
 }

@@ -7,7 +7,6 @@ import static org.testng.Assert.assertTrue;
 import java.util.stream.Collectors;
 import lt.esdc.textparser.composite.TextComponent;
 import lt.esdc.textparser.composite.impl.TextStructure;
-import lt.esdc.textparser.parser.TextComponentParser;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

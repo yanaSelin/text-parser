@@ -1,31 +1,40 @@
 package lt.esdc.textparser.parser.impl;
 
+import java.util.regex.Matcher;
 import lt.esdc.textparser.composite.TextComponent;
-import lt.esdc.textparser.parser.TextComponentParser;
 
-public class MockParser implements TextComponentParser {
-  private final int length;
+public class MockParser extends TextComponentParser {
+  private final int maxLength;
 
   public MockParser() {
-    this.length = 0;
+    this(0);
   }
 
-  public MockParser(int length) {
-    this.length = length;
+  public MockParser(int maxLength) {
+    this.maxLength = maxLength;
   }
 
   @Override
-  public void setNext(TextComponentParser parser) {
+  public TextComponent parse(ParseObject text) {
+    int textLength = text.getText().length();
+    int limit = maxLength == 0 ? textLength : Math.min(text.getPointer() + maxLength, textLength);
+    TextComponent component = new MockTextComponent(text.getText().substring(text.getPointer(), limit));
+    text.incrementPointer(limit - text.getPointer());
+    return component;
+  }
+
+  @Override
+  protected Matcher getMatcher(String text) {
+    return null;
+  }
+
+  @Override
+  protected TextComponent parseChunk(ParseObject chunk) {
+    return null;
   }
 
   @Override
   public TextComponent parse(String text) {
-    int limit = length == 0 ? text.length() : Math.min(length, text.length());
-    return new MockTextComponent(text.substring(0, limit));
+    return parse(new ParseObject(text));
   }
-
-//  @Override
-//  public TextComponent parse(String text, int start) {
-//    return parse(text.substring(start));
-//  }
 }

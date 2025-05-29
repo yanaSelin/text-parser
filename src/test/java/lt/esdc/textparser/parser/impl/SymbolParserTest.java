@@ -1,10 +1,11 @@
 package lt.esdc.textparser.parser.impl;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
 import lt.esdc.textparser.composite.TextComponent;
 import lt.esdc.textparser.composite.impl.Symbol;
-import lt.esdc.textparser.parser.TextComponentParser;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

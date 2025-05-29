@@ -3,16 +3,14 @@ package lt.esdc.textparser.parser.impl;
 import lt.esdc.textparser.composite.TextComponent;
 import lt.esdc.textparser.composite.impl.TextStructure;
 
-public abstract class TextStructureParser extends BaseComponentParser {
+public abstract class TextStructureParser extends TextComponentParser {
   @Override
-  protected TextComponent buildComponent(String text) {
+  protected TextComponent parseChunk(ParseObject chunk) {
     TextStructure structure = new TextStructure();
 
-    int pointer = 0;
-    while (pointer < text.length()) {
-      TextComponent child = parseNext(text.substring(pointer));
+    while (!chunk.isDone()) {
+      TextComponent child = parseNext(chunk);
       structure.addChild(child);
-      pointer += child.length();
     }
 
     return structure;
