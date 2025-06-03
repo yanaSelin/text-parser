@@ -24,7 +24,7 @@ public class TextTextStructureParserTest {
   @Test(dataProvider = "textSamples")
   public void testTextParserParsesEntireContent(String sampleText) {
     // Arrange
-    TextComponentParser parser = new TextTextStructureParser();
+    AbstractTextComponentParser parser = new TextTextStructureParser();
     MockParser mockParser = new MockParser();
     parser.setNext(mockParser);
 
@@ -45,7 +45,7 @@ public class TextTextStructureParserTest {
   @Test
   public void testTextParserCreatesMultipleChildren() {
     // Arrange
-    TextComponentParser parser = new TextTextStructureParser();
+    AbstractTextComponentParser parser = new TextTextStructureParser();
     MockParser mockParser = new MockParser(5);
     parser.setNext(mockParser);
 

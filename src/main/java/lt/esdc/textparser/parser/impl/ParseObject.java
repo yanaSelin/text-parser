@@ -1,6 +1,6 @@
 package lt.esdc.textparser.parser.impl;
 
-public class ParseObject {
+class ParseObject {
   private final String text;
 
   private int pointer;

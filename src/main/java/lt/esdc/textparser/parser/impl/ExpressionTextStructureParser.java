@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lt.esdc.textparser.composite.TextComponent;
 
-public class ExpressionTextStructureParser extends TextComponentParser {
+public class ExpressionTextStructureParser extends AbstractTextComponentParser {
   private static final Pattern EXPRESSION_PATTERN = Pattern
         .compile("^([-+(~]+\\d+[\\d&<>|(/)+~\\-*^]*|\\d+[&<>|(/)+~\\-*^][\\d&<>|(/)+~\\-*^]*)");
 

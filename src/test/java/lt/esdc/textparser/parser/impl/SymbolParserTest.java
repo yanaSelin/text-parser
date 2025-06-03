@@ -41,7 +41,7 @@ public class SymbolParserTest {
   @Test(dataProvider = "textSamples")
   public void testTextParserParsesEntireContent(String sampleText) {
     // Arrange
-    TextComponentParser parser = new SymbolParser();
+    AbstractTextComponentParser parser = new SymbolParser();
 
     // Act
     TextComponent result = parser.parse(sampleText);
@@ -55,7 +55,7 @@ public class SymbolParserTest {
   @Test(dataProvider = "longSamples")
   public void testTextParserCaptureOnlyFirst(String sampleText) {
     // Arrange
-    TextComponentParser parser = new SymbolParser();
+    AbstractTextComponentParser parser = new SymbolParser();
 
     // Act
     TextComponent result = parser.parse(sampleText);

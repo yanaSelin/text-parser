@@ -33,7 +33,7 @@ public class ExpressionTextStructureParserTest {
   @Test(dataProvider = "textSamples")
   public void testTextParserParsesEntireContent(String sampleText) {
     // Arrange
-    TextComponentParser parser = new ExpressionTextStructureParser();
+    AbstractTextComponentParser parser = new ExpressionTextStructureParser();
     MockParser mockParser = new MockParser();
     parser.setNext(mockParser);
 
@@ -50,7 +50,7 @@ public class ExpressionTextStructureParserTest {
   @Test(dataProvider = "notMatchingSamples")
   public void testTextParserIgnoreNotMatchingSamples(String sampleText) {
     // Arrange
-    TextComponentParser parser = new ExpressionTextStructureParser();
+    AbstractTextComponentParser parser = new ExpressionTextStructureParser();
     MockParser mockParser = new MockParser();
     parser.setNext(mockParser);
 

@@ -4,17 +4,17 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import lt.esdc.textparser.composite.TextComponent;
 import lt.esdc.textparser.parser.Chainable;
-import lt.esdc.textparser.parser.Parser;
+import lt.esdc.textparser.parser.TextParser;
 
-public abstract class TextComponentParser implements Parser, Chainable<TextComponentParser> {
-  protected Optional<TextComponentParser> next = Optional.empty();
+abstract class AbstractTextComponentParser implements TextParser, Chainable<AbstractTextComponentParser> {
+  protected Optional<AbstractTextComponentParser> next = Optional.empty();
 
   protected abstract Matcher getMatcher(String text);
 
   protected abstract TextComponent parseChunk(ParseObject chunk);
 
   @Override
-  public void setNext(TextComponentParser parser) {
+  public void setNext(AbstractTextComponentParser parser) {
     next = Optional.of(parser);
   }
 

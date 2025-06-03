@@ -2,12 +2,12 @@ package lt.esdc.textparser.parser.impl;
 
 import lt.esdc.textparser.composite.TextComponent;
 import lt.esdc.textparser.parser.Chainable;
-import lt.esdc.textparser.parser.Parser;
+import lt.esdc.textparser.parser.TextParser;
 
-public class ParserImpl implements Parser {
+public class ParserImpl implements TextParser {
   @Override
   public TextComponent parse(String text) {
-    Parser parser = Chainable.link(
+    TextParser parser = Chainable.link(
           new TextTextStructureParser(),
           new ParagraphTextStructureParser(),
           new SentenceTextStructureParser(),

@@ -3,7 +3,7 @@ package lt.esdc.textparser.parser.impl;
 import java.util.regex.Matcher;
 import lt.esdc.textparser.composite.TextComponent;
 
-public class MockParser extends TextComponentParser {
+public class MockParser extends AbstractTextComponentParser {
   private final int maxLength;
 
   public MockParser() {

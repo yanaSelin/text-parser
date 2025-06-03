@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 import lt.esdc.textparser.composite.TextComponent;
 import lt.esdc.textparser.composite.impl.Symbol;
 
-public class SymbolParser extends TextComponentParser {
+public class SymbolParser extends AbstractTextComponentParser {
   private static final Pattern SYMBOL_PATTERN = Pattern.compile("^.", Pattern.DOTALL);
 
   @Override

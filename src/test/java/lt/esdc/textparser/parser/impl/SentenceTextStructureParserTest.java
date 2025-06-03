@@ -35,7 +35,7 @@ public class SentenceTextStructureParserTest {
   @Test(dataProvider = "textSamples")
   public void testTextParserParsesEntireContent(String sampleText) {
     // Arrange
-    TextComponentParser parser = new SentenceTextStructureParser();
+    AbstractTextComponentParser parser = new SentenceTextStructureParser();
     MockParser mockParser = new MockParser();
     parser.setNext(mockParser);
 
@@ -56,7 +56,7 @@ public class SentenceTextStructureParserTest {
   @Test(dataProvider = "notMatchingSamples")
   public void testTextParserIgnoreNotMatchingSamples(String sampleText) {
     // Arrange
-    TextComponentParser parser = new SentenceTextStructureParser();
+    AbstractTextComponentParser parser = new SentenceTextStructureParser();
     MockParser mockParser = new MockParser();
     parser.setNext(mockParser);
 
@@ -73,7 +73,7 @@ public class SentenceTextStructureParserTest {
   @Test
   public void testTextParserCreatesMultipleChildren() {
     // Arrange
-    TextComponentParser parser = new SentenceTextStructureParser();
+    AbstractTextComponentParser parser = new SentenceTextStructureParser();
     MockParser mockParser = new MockParser(5);
     parser.setNext(mockParser);
 

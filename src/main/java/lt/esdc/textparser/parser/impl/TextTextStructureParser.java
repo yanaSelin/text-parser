@@ -3,7 +3,7 @@ package lt.esdc.textparser.parser.impl;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TextTextStructureParser extends TextStructureParser {
+public class TextTextStructureParser extends AbstractTextStructureParser {
   private static final Pattern TEXT_PATTERN = Pattern.compile(".*", Pattern.DOTALL);
 
   @Override

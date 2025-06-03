@@ -3,7 +3,7 @@ package lt.esdc.textparser.parser.impl;
 import static org.testng.Assert.*;
 
 import lt.esdc.textparser.composite.TextComponent;
-import lt.esdc.textparser.parser.Parser;
+import lt.esdc.textparser.parser.TextParser;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -34,7 +34,7 @@ public class ParserImplTest {
 
   @Test(dataProvider = "textSamples")
   public void testParse(String name, String inputText, String expectedOutput) {
-    Parser parser = new ParserImpl();
+    TextParser parser = new ParserImpl();
 
     TextComponent component = parser.parse(inputText);
 

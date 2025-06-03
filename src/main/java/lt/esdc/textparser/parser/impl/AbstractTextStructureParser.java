@@ -3,7 +3,7 @@ package lt.esdc.textparser.parser.impl;
 import lt.esdc.textparser.composite.TextComponent;
 import lt.esdc.textparser.composite.impl.TextStructure;
 
-public abstract class TextStructureParser extends TextComponentParser {
+abstract class AbstractTextStructureParser extends AbstractTextComponentParser {
   @Override
   protected TextComponent parseChunk(ParseObject chunk) {
     TextStructure structure = new TextStructure();
