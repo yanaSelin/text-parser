@@ -2,6 +2,7 @@ package lt.esdc.textparser.composite.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lt.esdc.textparser.composite.TextComponent;
@@ -43,13 +44,6 @@ public class TextStructure implements TextComponent {
     return type;
   }
 
-  //  @Override
-//  public List<TextComponent> getComponents(TextComponentType type) {
-//    return type == this.type ? List.of(this) : children.stream()
-//          .flatMap((child) -> child.getComponents(type).stream())
-//          .toList();
-//  }
-
   @Override
   public List<TextComponent> getComponents(TextComponentType type) {
     return children.stream()
@@ -72,5 +66,19 @@ public class TextStructure implements TextComponent {
     }
 
     return false;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    TextStructure that = (TextStructure) o;
+    return Objects.equals(children, that.children) && type == that.type;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(children, type);
   }
 }
