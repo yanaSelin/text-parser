@@ -6,7 +6,7 @@ import lt.esdc.textparser.composite.TextComponentType;
 import lt.esdc.textparser.composite.impl.TextStructure;
 
 public class WordTextStructureParser extends AbstractTextStructureParser {
-  private static final Pattern WORD_PATTERN = Pattern.compile("^[а-яА-ЯёЁa-zA-Z0-9]+");
+  private static final Pattern WORD_PATTERN = Pattern.compile("^[а-яА-ЯёЁa-zA-Z(-?0-9)]+");
 
   @Override
   protected Matcher getMatcher(String text) {

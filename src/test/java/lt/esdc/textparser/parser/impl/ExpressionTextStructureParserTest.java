@@ -1,14 +1,32 @@
 package lt.esdc.textparser.parser.impl;
 
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 import lt.esdc.textparser.composite.TextComponent;
+import lt.esdc.textparser.interpreter.ExpressionInterpreter;
+import org.mockito.Mock;
+import org.mockito.testng.MockitoTestNGListener;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(MockitoTestNGListener.class)
 public class ExpressionTextStructureParserTest {
+  private AbstractTextComponentParser parser;
+
+  @Mock
+  private ExpressionInterpreter interpreter;
+
+  @BeforeMethod
+  public void setUp() {
+    parser = new ExpressionTextStructureParser(interpreter);
+  }
+
   @DataProvider(name = "textSamples")
   public Object[][] provideTextSamples() {
     return new Object[][]{
@@ -33,9 +51,9 @@ public class ExpressionTextStructureParserTest {
   @Test(dataProvider = "textSamples")
   public void testTextParserParsesEntireContent(String sampleText) {
     // Arrange
-    AbstractTextComponentParser parser = new ExpressionTextStructureParser();
     MockParser mockParser = new MockParser();
     parser.setNext(mockParser);
+    when(interpreter.interpret(anyString())).thenReturn("Mocked Result");
 
     // Act
     TextComponent result = parser.parse(sampleText);
@@ -44,13 +62,12 @@ public class ExpressionTextStructureParserTest {
     assertNotNull(result);
     assertTrue(result instanceof MockTextComponent);
     MockTextComponent mockTextComponent = (MockTextComponent) result;
-    assertEquals(mockTextComponent.content(), "calculated");
+    assertEquals(mockTextComponent.content(), "Mocked Result");
   }
 
   @Test(dataProvider = "notMatchingSamples")
   public void testTextParserIgnoreNotMatchingSamples(String sampleText) {
     // Arrange
-    AbstractTextComponentParser parser = new ExpressionTextStructureParser();
     MockParser mockParser = new MockParser();
     parser.setNext(mockParser);
 
