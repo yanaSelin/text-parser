@@ -13,8 +13,6 @@ import lt.esdc.textparser.interpreter.ExpressionInterpreter;
  */
 public class ArithmeticExpressionInterpreter implements ExpressionInterpreter {
 
-  private final UnaryOperatorHandler unaryOperatorHandler = new UnaryOperatorHandler();
-
   private final Tokenizer tokenizer = new Tokenizer();
 
   private final InfixToPostfixConverter infixToPostfixConverter = new InfixToPostfixConverter();
@@ -26,8 +24,6 @@ public class ArithmeticExpressionInterpreter implements ExpressionInterpreter {
     if (expression == null || expression.isEmpty()) {
       throw new IllegalArgumentException("Expression cannot be null or empty");
     }
-
-    expression = unaryOperatorHandler.preprocessUnaryOperators(expression);
 
     List<String> tokens = tokenizer.tokenize(expression);
     List<String> postfix = infixToPostfixConverter.convert(tokens);

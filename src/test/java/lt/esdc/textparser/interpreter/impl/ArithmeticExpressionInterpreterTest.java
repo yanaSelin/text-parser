@@ -27,6 +27,7 @@ public class ArithmeticExpressionInterpreterTest {
           {"2+3*4", "14"},
           {"(2+3)*4", "20"},
           {"-(2+3)", "-5"},
+          {"-(2+3)++", "-5"},
           {"(7+5*12*(2+5-2-71))/12", "-329"},  // Complex expression with parentheses
     };
   }
@@ -43,6 +44,10 @@ public class ArithmeticExpressionInterpreterTest {
           {"(8)--", "8"},
           {"++(8)", "9"},
           {"--(8)", "7"},
+          {"-8", "-8"},
+          {"-(7)", "-7"},
+          {"+(6)", "6"},
+          {"+9", "9"},
     };
   }
 

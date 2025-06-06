@@ -12,7 +12,7 @@ import lt.esdc.textparser.util.StringUtil;
  * where operators appear between operands (e.g. 3 + 4).
  * Postfix notation places operators after their operands (e.g. 3 4 +),
  * which is easier for computers to evaluate
- * without requiring parentheses to denote precedence.</p>
+ * without requiring parentheses to denote precedence.
  */
 public class InfixToPostfixConverter {
   /**
@@ -30,23 +30,23 @@ public class InfixToPostfixConverter {
       if (StringUtil.isNumeric(token)) {
         // If token is a number, add it to output
         output.add(token);
-      } else if (OperationType.LEFT_PARENTHESIS.equals(token)) {
+      } else if (TokenOperatorType.LEFT_PARENTHESIS.equals(token)) {
         // If token is an opening parenthesis, push it to the stack
         operators.push(token);
-      } else if (OperationType.RIGHT_PARENTHESIS.equals(token)) {
+      } else if (TokenOperatorType.RIGHT_PARENTHESIS.equals(token)) {
         // If token is a closing parenthesis, pop operators until opening parenthesis
         while (!operators.isEmpty()
-              && !OperationType.LEFT_PARENTHESIS.equals(operators.peek())) {
+              && !TokenOperatorType.LEFT_PARENTHESIS.equals(operators.peek())) {
           output.add(operators.pop());
         }
         if (!operators.isEmpty()
-              && OperationType.LEFT_PARENTHESIS.equals(operators.peek())) {
+              && TokenOperatorType.LEFT_PARENTHESIS.equals(operators.peek())) {
           operators.pop(); // Discard the opening parenthesis
         }
-      } else if (OperationType.isOperator(token)) {
+      } else {
         // If token is an operator, handle precedence
         while (!operators.isEmpty()
-              && OperationType.isOperator(operators.peek())
+              && !StringUtil.isNumeric(operators.peek())
               && getPrecedence(operators.peek()) >= getPrecedence(token)) {
           output.add(operators.pop());
         }
@@ -56,7 +56,7 @@ public class InfixToPostfixConverter {
 
     // Pop any remaining operators
     while (!operators.isEmpty()) {
-      if (OperationType.LEFT_PARENTHESIS.equals(operators.peek())) {
+      if (OperatorSymbolType.LEFT_PARENTHESIS.equals(operators.peek())) {
         throw new IllegalArgumentException("Mismatched parentheses");
       }
       output.add(operators.pop());
@@ -73,7 +73,7 @@ public class InfixToPostfixConverter {
    * @return The precedence value of the operator, or -1 if not recognized
    */
   private int getPrecedence(String operator) {
-    OperationType operationType = OperationType.fromSymbol(operator);
-    return operationType != null ? operationType.getPrecedence() : -1;
+    TokenOperatorType operationType = TokenOperatorType.valueOf(operator);
+    return operationType.getPrecedence();
   }
 }

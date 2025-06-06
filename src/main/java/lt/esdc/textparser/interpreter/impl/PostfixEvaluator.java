@@ -26,19 +26,21 @@ class PostfixEvaluator {
     for (String token : postfix) {
       if (StringUtil.isNumeric(token)) {
         operandStack.push(Integer.parseInt(token));
-      } else if (OperationType.isOperator(token)) {
-        if (OperationType.isUnaryOperator(token)) {
+      } else {
+        TokenOperatorType operator = TokenOperatorType.valueOf(token);
+        if (operator.isUnary()) {
           // Unary operator
           int operand = operandStack.pop();
-          operandStack.push(applyOperator(token, operand, 0));
+          operandStack.push(applyOperator(operator, operand, 0));
         } else {
           // Binary operator
           int operand2 = operandStack.pop();
           int operand1 = operandStack.pop();
-          operandStack.push(applyOperator(token, operand1, operand2));
+          operandStack.push(applyOperator(operator, operand1, operand2));
         }
       }
     }
+
 
     if (operandStack.size() != 1) {
       throw new IllegalArgumentException("Invalid expression");
@@ -57,13 +59,8 @@ class PostfixEvaluator {
    * @throws IllegalArgumentException if the operator is unknown or unsupported
    * @throws ArithmeticException if a division by zero occurs
    */
-  private int applyOperator(String operator, int operand1, int operand2) {
-    OperationType operationType = OperationType.fromSymbol(operator);
-    if (operationType == null) {
-      throw new IllegalArgumentException("Unknown operator: " + operator);
-    }
-
-    return switch (operationType) {
+  private int applyOperator(TokenOperatorType operator, int operand1, int operand2) {
+    return switch (operator) {
       case ADD -> operand1 + operand2;
       case SUBTRACT -> operand1 - operand2;
       case MULTIPLY -> operand1 * operand2;
@@ -79,6 +76,10 @@ class PostfixEvaluator {
       case BITWISE_SHIFT_RIGHT -> operand1 >> operand2;
       case BITWISE_SHIFT_LEFT -> operand1 << operand2;
       case BITWISE_COMPLEMENT -> ~operand1;
+      case PREFIX_DECREMENT -> operand1 - 1;
+      case PREFIX_INCREMENT -> operand1 + 1;
+      case POSTFIX_INCREMENT, POSTFIX_DECREMENT, POSITIVE -> operand1;
+      case NEGATIVE -> -operand1;
       default -> throw new IllegalArgumentException("Unsupported operator: " + operator);
     };
   }

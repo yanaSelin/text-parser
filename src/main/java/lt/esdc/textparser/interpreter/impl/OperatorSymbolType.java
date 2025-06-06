@@ -3,40 +3,31 @@ package lt.esdc.textparser.interpreter.impl;
 /**
  * Enum representing operation types in the arithmetic expression interpreter.
  */
-enum OperationType {
+enum OperatorSymbolType {
   // Arithmetic operators
-  ADD("+", 5),
-  SUBTRACT("-", 5),
-  MULTIPLY("*", 6),
-  DIVIDE("/", 6),
+  PLUS("+"),
+  MINUS("-"),
+  MULTIPLY("*"),
+  DIVIDE("/"),
+  DECREMENT("--"),
+  INCREMENT("++"),
 
   // Bitwise operators
-  BITWISE_OR("|", 1),
-  BITWISE_XOR("^", 2),
-  BITWISE_AND("&", 3),
-  BITWISE_SHIFT_LEFT("<<", 4),
-  BITWISE_SHIFT_RIGHT(">>", 4),
-  BITWISE_COMPLEMENT("~", 7),
+  BITWISE_OR("|"),
+  BITWISE_XOR("^"),
+  BITWISE_AND("&"),
+  BITWISE_SHIFT_LEFT("<<"),
+  BITWISE_SHIFT_RIGHT(">>"),
+  BITWISE_COMPLEMENT("~"),
 
   // Parentheses
-  LEFT_PARENTHESIS("(", 0),
-  RIGHT_PARENTHESIS(")", 0);
+  LEFT_PARENTHESIS("("),
+  RIGHT_PARENTHESIS(")");
 
   private final String symbol;
 
-  private final int precedence;
-
-  OperationType(String symbol, int precedence) {
+  OperatorSymbolType(String symbol) {
     this.symbol = symbol;
-    this.precedence = precedence;
-  }
-
-  public String getSymbol() {
-    return symbol;
-  }
-
-  public int getPrecedence() {
-    return precedence;
   }
 
   public boolean equals(String token) {
@@ -49,9 +40,9 @@ enum OperationType {
    * @param symbol the operation symbol
    * @return the corresponding OperationType, or null if not found
    */
-  public static OperationType fromSymbol(String symbol) {
-    for (OperationType operationType : values()) {
-      if (operationType.getSymbol().equals(symbol)) {
+  public static OperatorSymbolType fromSymbol(String symbol) {
+    for (OperatorSymbolType operationType : values()) {
+      if (operationType.symbol.equals(symbol)) {
         return operationType;
       }
     }
@@ -66,9 +57,5 @@ enum OperationType {
    */
   public static boolean isOperator(String token) {
     return fromSymbol(token) != null;
-  }
-
-  public static boolean isUnaryOperator(String token) {
-    return fromSymbol(token) == BITWISE_COMPLEMENT;
   }
 }
