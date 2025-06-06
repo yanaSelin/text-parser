@@ -105,8 +105,8 @@ public class ArithmeticExpressionInterpreterTest {
     interpreter.interpret("5/0");
   }
 
-//    @Test(expectedExceptions = IllegalArgumentException.class)
-//    public void testInvalidExpression() {
-//        interpreter.interpret("5+*3");
-//    }
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testInvalidExpression() {
+    interpreter.interpret("5+*3");
+  }
 }

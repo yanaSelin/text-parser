@@ -29,11 +29,19 @@ class PostfixEvaluator {
       } else {
         TokenOperatorType operator = TokenOperatorType.valueOf(token);
         if (operator.isUnary()) {
-          // Unary operator
+          if (operandStack.isEmpty()) {
+            throw new IllegalArgumentException(
+                  "Invalid expression: missing operand for operator " + operator);
+          }
+
           int operand = operandStack.pop();
           operandStack.push(applyOperator(operator, operand, 0));
         } else {
-          // Binary operator
+          if (operandStack.size() < 2) {
+            throw new IllegalArgumentException(
+                  "Invalid expression: not enough operands for operator " + operator);
+          }
+
           int operand2 = operandStack.pop();
           int operand1 = operandStack.pop();
           operandStack.push(applyOperator(operator, operand1, operand2));
