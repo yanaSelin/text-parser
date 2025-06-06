@@ -4,9 +4,21 @@ import java.util.List;
 import java.util.Stack;
 import lt.esdc.textparser.util.StringUtil;
 
+/**
+ * Evaluates expressions in postfix notation (Reverse Polish Notation).
+ *
+ * <p>This class processes a list of tokens in postfix notation and computes the final result.
+ * It supports arithmetic operations (+, -, *, /), bitwise operations (|, ^, &, >>, <<, ~),
+ * and follows proper operator precedence rules.</p>
+ */
 class PostfixEvaluator {
   /**
-   * Evaluates a postfix expression
+   * Evaluates a postfix expression and returns the computed result.
+   *
+   * @param postfix A list of tokens in postfix notation
+   * @return The result of the expression evaluation as a string
+   * @throws IllegalArgumentException if the expression is invalid or contains unsupported operators
+   * @throws ArithmeticException if a division by zero occurs
    */
   public String evaluate(List<String> postfix) {
     Stack<Integer> operandStack = new Stack<>();
@@ -15,7 +27,7 @@ class PostfixEvaluator {
       if (StringUtil.isNumeric(token)) {
         operandStack.push(Integer.parseInt(token));
       } else if (OperationType.isOperator(token)) {
-        if (token.equals(OperationType.BITWISE_COMPLEMENT.getSymbol())) {
+        if (OperationType.isUnaryOperator(token)) {
           // Unary operator
           int operand = operandStack.pop();
           operandStack.push(applyOperator(token, operand, 0));
@@ -36,7 +48,14 @@ class PostfixEvaluator {
   }
 
   /**
-   * Applies an operator to operands
+   * Applies an operator to operands based on the operation type.
+   *
+   * @param operator The operator symbol to apply
+   * @param operand1 The first operand (or the only operand for unary operations)
+   * @param operand2 The second operand (ignored for unary operations)
+   * @return The result of applying the operator to the operands
+   * @throws IllegalArgumentException if the operator is unknown or unsupported
+   * @throws ArithmeticException if a division by zero occurs
    */
   private int applyOperator(String operator, int operand1, int operand2) {
     OperationType operationType = OperationType.fromSymbol(operator);

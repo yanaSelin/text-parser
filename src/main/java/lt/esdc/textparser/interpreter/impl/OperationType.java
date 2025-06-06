@@ -39,6 +39,10 @@ enum OperationType {
     return precedence;
   }
 
+  public boolean equals(String token) {
+    return this.symbol.equals(token);
+  }
+
   /**
    * Finds an operation type by its symbol.
    *
@@ -62,5 +66,9 @@ enum OperationType {
    */
   public static boolean isOperator(String token) {
     return fromSymbol(token) != null;
+  }
+
+  public static boolean isUnaryOperator(String token) {
+    return fromSymbol(token) == BITWISE_COMPLEMENT;
   }
 }
