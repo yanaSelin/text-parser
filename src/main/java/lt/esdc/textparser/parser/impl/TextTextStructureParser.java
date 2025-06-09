@@ -10,7 +10,7 @@ import lt.esdc.textparser.composite.impl.TextStructure;
  * This parser treats the entire input as a single text component and creates
  * the top-level text structure component.
  */
-public class TextTextStructureParser extends AbstractTextStructureParser {
+class TextTextStructureParser extends AbstractTextStructureParser {
   private static final Pattern TEXT_PATTERN = Pattern.compile(".*", Pattern.DOTALL);
 
   /**

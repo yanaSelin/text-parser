@@ -10,7 +10,7 @@ import lt.esdc.textparser.composite.impl.TextStructure;
  * This parser identifies paragraphs based on tab indentation and creates
  * the corresponding text structure components.
  */
-public class ParagraphTextStructureParser extends AbstractTextStructureParser {
+class ParagraphTextStructureParser extends AbstractTextStructureParser {
   private static final Pattern PARAGRAPH_PATTERN = Pattern.compile("(^\t[\\s\\S]*?)(?=\n\t|$)");
 
   /**

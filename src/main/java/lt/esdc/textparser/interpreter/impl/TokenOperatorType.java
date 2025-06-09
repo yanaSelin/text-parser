@@ -42,15 +42,15 @@ enum TokenOperatorType {
     this(precedence, false);
   }
 
-  public int getPrecedence() {
+  int getPrecedence() {
     return precedence;
   }
 
-  public boolean isUnary() {
+  boolean isUnary() {
     return isUnary;
   }
 
-  public boolean equals(String operator) {
+  boolean equals(String operator) {
     return this.name().equals(operator);
   }
 }

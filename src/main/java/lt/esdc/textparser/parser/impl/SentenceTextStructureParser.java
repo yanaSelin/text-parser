@@ -10,7 +10,7 @@ import lt.esdc.textparser.composite.impl.TextStructure;
  * This parser identifies sentences based on capitalization and termination punctuation marks
  * and creates the corresponding text structure components.
  */
-public class SentenceTextStructureParser extends AbstractTextStructureParser {
+class SentenceTextStructureParser extends AbstractTextStructureParser {
   private static final Pattern SENTENCE_PATTERN =
         Pattern.compile("^[A-ZА-Я][\\s\\S]*?(?:\\.\\.\\.|!|\\?|\\.)(?=\\s*(?:[A-ZА-Я]|$))");
 

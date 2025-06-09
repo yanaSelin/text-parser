@@ -10,7 +10,7 @@ import lt.esdc.textparser.interpreter.ExpressionInterpreter;
  * This parser identifies expressions based on a regex pattern and uses
  * an interpreter to evaluate the expressions.
  */
-public class ExpressionTextStructureParser extends AbstractTextComponentParser {
+class ExpressionTextStructureParser extends AbstractTextComponentParser {
   private static final Pattern EXPRESSION_PATTERN = Pattern
         .compile("^([-+(~]+\\d+[\\d&<>|(/)+~\\-*^]*|\\d+[&<>|(/)+~\\-*^][\\d&<>|(/)+~\\-*^]*)");
 
@@ -21,7 +21,7 @@ public class ExpressionTextStructureParser extends AbstractTextComponentParser {
    *
    * @param interpreter the expression interpreter used to evaluate expressions
    */
-  public ExpressionTextStructureParser(ExpressionInterpreter interpreter) {
+  ExpressionTextStructureParser(ExpressionInterpreter interpreter) {
     this.interpreter = interpreter;
   }
 

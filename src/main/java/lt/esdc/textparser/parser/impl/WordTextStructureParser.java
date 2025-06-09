@@ -10,7 +10,7 @@ import lt.esdc.textparser.composite.impl.TextStructure;
  * This parser identifies words consisting of Latin or Cyrillic characters as well as
  * numeric values with potential hyphens, and creates the corresponding text structure components.
  */
-public class WordTextStructureParser extends AbstractTextStructureParser {
+class WordTextStructureParser extends AbstractTextStructureParser {
   private static final Pattern WORD_PATTERN = Pattern.compile("^[а-яА-ЯёЁa-zA-Z]+|^(-?[0-9]+)");
 
   /**

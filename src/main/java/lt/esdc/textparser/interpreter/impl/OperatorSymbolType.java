@@ -30,7 +30,7 @@ enum OperatorSymbolType {
     this.symbol = symbol;
   }
 
-  public boolean equals(String token) {
+  boolean equals(String token) {
     return this.symbol.equals(token);
   }
 
@@ -40,7 +40,7 @@ enum OperatorSymbolType {
    * @param symbol the operation symbol
    * @return the corresponding OperationType, or null if not found
    */
-  public static OperatorSymbolType fromSymbol(String symbol) {
+  static OperatorSymbolType fromSymbol(String symbol) {
     for (OperatorSymbolType operationType : values()) {
       if (operationType.symbol.equals(symbol)) {
         return operationType;
@@ -55,7 +55,7 @@ enum OperatorSymbolType {
    * @param token the token to check
    * @return true if the token is an operator symbol, false otherwise
    */
-  public static boolean isOperator(String token) {
+  static boolean isOperator(String token) {
     return fromSymbol(token) != null;
   }
 }

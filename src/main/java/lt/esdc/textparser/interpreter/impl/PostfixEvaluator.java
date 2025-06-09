@@ -20,7 +20,7 @@ class PostfixEvaluator {
    * @throws IllegalArgumentException if the expression is invalid or contains unsupported operators
    * @throws ArithmeticException if a division by zero occurs
    */
-  public String evaluate(List<String> postfix) {
+  String evaluate(List<String> postfix) {
     Stack<Integer> operandStack = new Stack<>();
 
     for (String token : postfix) {

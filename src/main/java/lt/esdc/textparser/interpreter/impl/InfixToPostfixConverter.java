@@ -14,7 +14,7 @@ import lt.esdc.textparser.util.StringUtil;
  * which is easier for computers to evaluate
  * without requiring parentheses to denote precedence.
  */
-public class InfixToPostfixConverter {
+class InfixToPostfixConverter {
   /**
    * Converts infix notation to postfix (Reverse Polish Notation) using the shunting yard algorithm.
    *

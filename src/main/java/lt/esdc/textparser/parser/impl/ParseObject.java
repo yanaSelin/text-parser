@@ -18,7 +18,7 @@ class ParseObject {
    *
    * @param text the text to be parsed
    */
-  public ParseObject(String text) {
+  ParseObject(String text) {
     this.text = text;
   }
 
@@ -27,7 +27,7 @@ class ParseObject {
    *
    * @param increment the number of characters to advance the pointer
    */
-  public void incrementPointer(int increment) {
+  void incrementPointer(int increment) {
     this.pointer += increment;
   }
 
@@ -36,7 +36,7 @@ class ParseObject {
    *
    * @return the text string
    */
-  public String getText() {
+  String getText() {
     return text;
   }
 
@@ -45,7 +45,7 @@ class ParseObject {
    *
    * @return the current pointer position
    */
-  public int getPointer() {
+  int getPointer() {
     return pointer;
   }
 
@@ -54,7 +54,7 @@ class ParseObject {
    *
    * @return true if the pointer has reached the end of the text, false otherwise
    */
-  public boolean isDone() {
+  boolean isDone() {
     return pointer >= text.length();
   }
 }

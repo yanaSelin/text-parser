@@ -13,7 +13,7 @@ import lt.esdc.textparser.composite.impl.Symbol;
  * As the terminal parser in the chain of responsibility, SymbolParser typically doesn't delegate
  * to another parser.
  */
-public class SymbolParser extends AbstractTextComponentParser {
+class SymbolParser extends AbstractTextComponentParser {
   private static final Pattern SYMBOL_PATTERN = Pattern.compile("^.", Pattern.DOTALL);
 
   /**
